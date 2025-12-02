@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mario
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mario
+  template:
+    metadata:
+      labels:
+        app: mario
+    spec:
+      containers:
+      - name: mario
+        image: patnmat/sre-test:mario
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mario
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /mario/index.html
+spec:
+  selector:
+    app: mario
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mario
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: '9oormthon-demo.goorm.training'
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mario
+            port:
+              number: 80
