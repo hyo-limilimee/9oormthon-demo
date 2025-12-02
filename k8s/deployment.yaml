@@ -37,7 +37,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: '9oormthon1.goorm.training'
+  - host: '9oormthon1-hyolim.goorm.training'
     http:
       paths:
       - path: /
