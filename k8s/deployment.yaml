@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mario
-        image: 837126493345.dkr.ecr.ap-northeast-2.amazonaws.com/<goormthon-n>/backend:latest 
+        image: 837126493345.dkr.ecr.ap-northeast-2.amazonaws.com/goormthon-1/backend:latest 
 ---
 apiVersion: v1
 kind: Service
@@ -37,7 +37,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: '9oormthon-demo.goorm.training'
+  - host: '9oormthon1.goorm.training'
     http:
       paths:
       - path: /
